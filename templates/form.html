@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>メモ登録画面</title>
+</head>
+<body>
+    <h1>メモ入力</h1>
+
+    <form method="POST" action="/">
+        <p>
+            <label>タイトル：</label><br>
+            <input type="text" name="title">
+        </p>
+        <p>
+            <label>日付：</label><br>
+            <input type="date" name="date">
+        </p>
+        <p>
+            <label>メモ内容：</label><br>
+            <textarea name="content"></textarea>
+        </p>
+        <button type="submit">登録</button>
+    </form>
+
+    <br>
+    <a href="/list">一覧を見る</a>
+</body>
+</html>
