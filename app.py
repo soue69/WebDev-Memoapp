@@ -50,6 +50,32 @@ def memo_list():
     conn.close()
     return render_template('list.html', memos=memos)
 
+@app.route('/detail/<int:id>')
+def detail(id):
+    conn = get_db()
+    memo = conn.execute('SELECT * FROM memos WHERE id = ?', (id,)).fetchone()
+    conn.close()
+    return render_template('detail.html', memo=memo)
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    conn = get_db()
+    if request.method == 'POST':
+        title = request.form.get('title')
+        date = request.form.get('date')
+        content = request.form.get('content')
+        conn.execute(
+            'UPDATE memos SET title = ?, date = ?, content = ? WHERE id = ?',
+            (title, date, content, id)
+        )
+        conn.commit()
+        conn.close()
+        return redirect('/detail/' + str(id))
+
+    memo = conn.execute('SELECT * FROM memos WHERE id = ?', (id,)).fetchone()
+    conn.close()
+    return render_template('edit.html', memo=memo)
+
 if __name__ == '__main__':
     init_db()
     app.run(debug=True, port=5000)

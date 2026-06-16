@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>メモ編集画面</title>
+</head>
+<body>
+    <h1>メモ編集</h1>
+
+    <form method="POST" action="/edit/{{ memo['id'] }}">
+        <p>
+            <label>タイトル：</label><br>
+            <input type="text" name="title" value="{{ memo['title'] }}">
+        </p>
+        <p>
+            <label>日付：</label><br>
+            <input type="date" name="date" value="{{ memo['date'] }}">
+        </p>
+        <p>
+            <label>メモ内容：</label><br>
+            <textarea name="content">{{ memo['content'] }}</textarea>
+        </p>
+        <button type="submit">更新</button>
+    </form>
+
+    <br>
+    <a href="/detail/{{ memo['id'] }}">詳細画面に戻る</a>
+</body>
+</html>

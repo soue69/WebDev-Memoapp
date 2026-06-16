@@ -16,7 +16,7 @@
             ID：{{ memo['id'] }}／
             タイトル：{{ memo['title'] }}／
             日付：{{ memo['date'] }}／
-            メモ内容：{{ memo['content'] }}
+            <a href="/detail/{{ memo['id'] }}">詳細を見る</a>
         </p>
     {% endfor %}
 </body>
